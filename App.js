@@ -7,6 +7,12 @@ export default function App() {
   const [text, setText] = useState("");
   const [goals, setGoals] = useState([]);
 
+  const handleDelete = (id) => {
+    setGoals((currentGoals) => {
+      return currentGoals.filter((item) => item.id !== id)
+    })
+  }
+
   return (
     <View style={styles.appContainer}>
       <GoalInput {...{ text, setText, setGoals }} />
@@ -14,7 +20,7 @@ export default function App() {
         <FlatList
           data={goals}
           renderItem={(itemData) => {
-            return <GoalItem {...{ itemData }} />;
+            return <GoalItem {...{ itemData,handleDelete }} />;
           }}
           keyExtractor={(item, index) => {
             return item.id;
