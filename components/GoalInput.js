@@ -5,12 +5,13 @@ const GoalInput = ({ text,setText,setGoals }) => {
   const handleChange = (enteredText) => {
     setText(enteredText);
   };
-  
+
   const handleSubmit = () => {
     setGoals((previousGoals) => [
       ...previousGoals,
       { name: text, id: Math.random().toString() },
     ]);
+    setText('')
   };
 
   return (
@@ -19,6 +20,7 @@ const GoalInput = ({ text,setText,setGoals }) => {
         onChangeText={handleChange}
         style={styles.textInput}
         placeholder="Your course goal!"
+        value={text}
       />
       <Button onPress={handleSubmit} title="Add Goal" />
     </View>
